@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label>No Handphone</label>
-                                <input name="no_telp" class="form-control" value="{{ old('no_telp')}}" placeholder="Silahkan isi No Handphone" >
+                                <input name="no_telp" class="form-control  @error('no_telp') is-invalid @enderror" value="{{ old('no_telp')}}" placeholder="Silahkan isi No Handphone" >
                                 @error('no_telp')
                                 <span class="invalid-feedback" role="alert">
                                     <div class="alert alert-danger">{{$message}}</div>

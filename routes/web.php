@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     PetugasController,
+    SantriController,
 };
 
 /*
@@ -21,3 +22,4 @@ Route::get('/', function () {
 });
 
 Route::resource('petugas', PetugasController::class);
+Route::resource('santri', SantriController::class);

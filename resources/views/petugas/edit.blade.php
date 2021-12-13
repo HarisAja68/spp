@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Form Petugas Edit</h3>
                     </div>
-                    <form action="{{ route('petugas.update', $data) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('petugas.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                         <div class="card-body">

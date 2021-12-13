@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Petugas;
+use App\Models\Santri;
 use Illuminate\Http\Request;
 
-class PetugasController extends Controller
+class SantriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $petugas = Petugas::all();
-        return view('petugas.index', compact('petugas'));
+        $santri = Santri::all();
+        return view('santri.index', compact('santri'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return view('petugas.create');
+        return view('santri.create');
     }
 
     /**
@@ -36,19 +36,23 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        $petugas = $request->validate([
-            'kode_petugas' => 'required|unique:petugas,kode_petugas',
-            'nama_petugas' => 'required',
+        $santri = $request->validate([
+            'nis' => 'required|unique:santri,nis',
+            'nama_santri' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
             'no_telp' => 'required',
         ]);
 
-        $petugas = new Petugas;
-        $petugas->kode_petugas = $request->kode_petugas;
-        $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->no_telp = $request->no_telp;
+        $santri = new Santri;
+        $santri->nis = $request->nis;
+        $santri->nama_santri = $request->nama_santri;
+        $santri->alamat = $request->alamat;
+        $santri->jenis_kelamin = $request->jenis_kelamin;
+        $santri->no_telp = $request->no_telp;
 
-        $petugas->save();
-        return redirect('petugas');
+        $santri->save();
+        return redirect('santri');
     }
 
     /**
@@ -70,8 +74,8 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        $data = Petugas::find($id);
-        return view('petugas.edit', compact('data'));
+        $santri = Santri::find($id);
+        return view('santri.edit', compact('santri'));
     }
 
     /**
@@ -83,13 +87,15 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $petugas = Petugas::find($id);
-        $petugas->kode_petugas = $request->kode_petugas;
-        $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->no_telp = $request->no_telp;
+        $santri = Santri::find($id);
+        $santri->nis = $request->nis;
+        $santri->nama_santri = $request->nama_santri;
+        $santri->alamat = $request->alamat;
+        $santri->jenis_kelamin = $request->jenis_kelamin;
+        $santri->no_telp = $request->no_telp;
 
-        $petugas->update();
-        return redirect('petugas');
+        $santri->update();
+        return redirect('santri');
     }
 
     /**
@@ -100,7 +106,7 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        Petugas::destroy($id);
-        return redirect('petugas');
+        Santri::destroy($id);
+        return redirect('santri');
     }
 }
