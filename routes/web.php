@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     PetugasController,
     SantriController,
+    RegisterController,
+    LoginController,
 };
 
 /*
@@ -17,8 +19,15 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/', function () {
-    return view('layout.master');
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/home', function () {
+    return view('welcome');
 });
 
 Route::resource('petugas', PetugasController::class);
