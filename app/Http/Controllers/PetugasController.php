@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Petugas;
+use App\Models\User;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class PetugasController extends Controller
 {
@@ -42,12 +45,15 @@ class PetugasController extends Controller
             'no_telp' => 'required',
         ]);
 
-        $petugas = new Petugas;
-        $petugas->kode_petugas = $request->kode_petugas;
-        $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->no_telp = $request->no_telp;
+        $user = User::pluck('id');
+        Petugas::create([
+            // 'user_id' => $user->id,
+            'kode_petugas' => $request->kode_petugas,
+            'nama_petugas' => $request->nama_petugas,
+            'no_telp' => $request->no_telp,
 
-        $petugas->save();
+        ]);
+
         return redirect('petugas');
     }
 
@@ -83,12 +89,7 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $petugas = Petugas::find($id);
-        $petugas->kode_petugas = $request->kode_petugas;
-        $petugas->nama_petugas = $request->nama_petugas;
-        $petugas->no_telp = $request->no_telp;
-
-        $petugas->update();
+        Petugas::find($id)->update($request->all());
         return redirect('petugas');
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     SantriController,
     RegisterController,
     LoginController,
+    PembayaranController,
 };
 
 /*
@@ -32,3 +33,8 @@ Route::get('/home', function () {
 
 Route::resource('petugas', PetugasController::class);
 Route::resource('santri', SantriController::class);
+
+Route::get('/pembayaran', [PembayaranController::class, 'index']);
+Route::get('bayar/{nis}', [PembayaranController::class, 'bayar'])->name('pembayaran.bayar');
+Route::post('bayar/{nis}', [PembayaranController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
+Route::get('history-pembayaran', [PembayaranController::class, 'history'])->name('pembayaran.history');

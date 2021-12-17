@@ -41,10 +41,18 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/pembayaran" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Pembayaran
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/history-pembayaran" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Pembayaran History
                     </p>
                 </a>
             </li>

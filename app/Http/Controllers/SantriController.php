@@ -36,7 +36,7 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        $santri = $request->validate([
+        $request->validate([
             'nis' => 'required|unique:santri,nis',
             'nama_santri' => 'required',
             'alamat' => 'required',
@@ -44,14 +44,7 @@ class SantriController extends Controller
             'no_telp' => 'required',
         ]);
 
-        $santri = new Santri;
-        $santri->nis = $request->nis;
-        $santri->nama_santri = $request->nama_santri;
-        $santri->alamat = $request->alamat;
-        $santri->jenis_kelamin = $request->jenis_kelamin;
-        $santri->no_telp = $request->no_telp;
-
-        $santri->save();
+        Santri::create($request->all());
         return redirect('santri');
     }
 
@@ -87,14 +80,7 @@ class SantriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $santri = Santri::find($id);
-        $santri->nis = $request->nis;
-        $santri->nama_santri = $request->nama_santri;
-        $santri->alamat = $request->alamat;
-        $santri->jenis_kelamin = $request->jenis_kelamin;
-        $santri->no_telp = $request->no_telp;
-
-        $santri->update();
+        Santri::find($id)->update($request->all());
         return redirect('santri');
     }
 
